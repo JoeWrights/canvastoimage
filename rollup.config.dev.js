@@ -41,7 +41,7 @@ module.exports = [{
       template: pathResolve('./example/index.html'),
       target: pathResolve('./docs/index.html'),
       replaceVars: {
-        '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? 'https://joewrights.github.io/canvastoimage/dist/canvastoimage.js' : '../dist/canvastoimage.js',
+        '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? 'https://cdn.jsdelivr.net/npm/canvastoimg@0.0.1/dist/canvastoimage.js' : '../dist/canvastoimage.js',
         '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/index.js' : './index.js'
       }
     }),

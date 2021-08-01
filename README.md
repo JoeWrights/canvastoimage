@@ -8,9 +8,13 @@ fork from [https://github.com/hongru/canvas2image](https://github.com/hongru/can
 
 
 ```bash
-$ npm install canvastoimage --save
+$ npm install canvastoimg --save
 ```
 
 ### Demo
 
 [click here](https://joewrights.github.io/canvastoimage)
+
+mobile scan this QR code
+
+![qrcode](qrcode_joewrights.github.io.png)
