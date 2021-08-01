@@ -44,7 +44,7 @@ const plugins = [
     commonjs()
 ]
 
-if (isProduction) {
+if (!isProduction) {
   plugins.push(serve({
     open: true,
     port: 3001
