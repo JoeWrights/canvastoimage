@@ -31,7 +31,7 @@ const babelOptions = {
 module.exports = [{
   input: pathResolve('./example/index.js'),
   output: [{
-    file: pathResolve('./doc/index.js'),
+    file: pathResolve('./docs/index.js'),
     format: 'umd',
     name: 'example'
   }],
@@ -39,10 +39,10 @@ module.exports = [{
     babel(babelOptions),
     template({
       template: pathResolve('./example/index.html'),
-      target: pathResolve('./doc/index.html'),
+      target: pathResolve('./docs/index.html'),
       replaceVars: {
         '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? 'https://joewrights.github.io/canvastoimage/dist/canvastoimage.js' : '../dist/canvastoimage.js',
-        '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/doc/index.js' : './index.js'
+        '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/index.js' : './index.js'
       }
     }),
     nodeResolve(),
@@ -51,6 +51,6 @@ module.exports = [{
       open: true,
       port: 3001
     }),
-    livereload('./doc/')
+    livereload('./docs/')
   ],
 }, ]
