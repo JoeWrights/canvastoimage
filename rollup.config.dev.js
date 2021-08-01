@@ -6,6 +6,8 @@ const commonjs = require('@rollup/plugin-commonjs')
 const serve = require('rollup-plugin-serve')
 const livereload = require('rollup-plugin-livereload')
 
+const pkg = require('./package.json')
+
 const pathResolve = (dir) => {
   return path.resolve(__dirname, dir)
 }
@@ -28,6 +30,28 @@ const babelOptions = {
   ]
 }
 
+const plugins = [
+  babel(babelOptions),
+    template({
+      template: pathResolve('./example/index.html'),
+      target: pathResolve('./docs/index.html'),
+      replaceVars: {
+        '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? `https://cdn.jsdelivr.net/npm/${pkg.name}@${pkg.version}/dist/canvastoimage.js` : '../dist/canvastoimage.js',
+        '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/index.js' : './index.js'
+      }
+    }),
+    nodeResolve(),
+    commonjs()
+]
+
+if (isProduction) {
+  plugins.push(serve({
+    open: true,
+    port: 3001
+  }),
+  livereload('./docs/'))
+}
+
 module.exports = [{
   input: pathResolve('./example/index.js'),
   output: [{
@@ -35,22 +59,5 @@ module.exports = [{
     format: 'umd',
     name: 'example'
   }],
-  plugins: [
-    babel(babelOptions),
-    template({
-      template: pathResolve('./example/index.html'),
-      target: pathResolve('./docs/index.html'),
-      replaceVars: {
-        '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? 'https://cdn.jsdelivr.net/npm/canvastoimg@0.0.1/dist/canvastoimage.js' : '../dist/canvastoimage.js',
-        '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/index.js' : './index.js'
-      }
-    }),
-    nodeResolve(),
-    commonjs(),
-    serve({
-      open: true,
-      port: 3001
-    }),
-    livereload('./docs/')
-  ],
+  plugins
 }, ]
