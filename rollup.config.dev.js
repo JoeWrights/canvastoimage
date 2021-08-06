@@ -37,7 +37,6 @@ const plugins = [
       target: pathResolve('./docs/index.html'),
       replaceVars: {
         '__PUBLIC_PATH__CANVASTOIMAGE__': isProduction ? `https://cdn.jsdelivr.net/npm/${pkg.name}@${pkg.version}/dist/canvastoimage.js` : '../dist/canvastoimage.js',
-        '__PUBLIC_PATH__INDEX__': isProduction ? 'https://joewrights.github.io/canvastoimage/index.js' : './index.js'
       }
     }),
     nodeResolve(),
